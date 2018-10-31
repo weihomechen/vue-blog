@@ -1,19 +1,32 @@
 <template>
-  <el-form ref="form" :model="form" label-width="80px">
-    <el-form-item label="用户名">
-      <el-input v-model="form.name"></el-input>
-    </el-form-item>
-    <el-form-item label="密码">
-      <el-input v-model="form.password"></el-input>
-    </el-form-item>
-    <el-form-item>
-      <el-button type="primary" @click="onSubmit">登陆</el-button>
-      <el-button>注册</el-button>
-    </el-form-item>
-  </el-form>
+  <div class="login">
+    <el-form class="login-form" ref="form" :model="form">
+      <div class="form-header">
+        <img src="../assets/logo.png" alt="">
+        <div class="text">IFUN BLOG</div>
+      </div>
+      <div class="form-body">
+        <el-form-item>
+          <el-input v-model="form.name" placeholder="用户名（试用：guest）"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-input v-model="form.password" placeholder="密码（试用：guest）" type="password"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="onSubmit" class="login-btn">登陆</el-button>
+        </el-form-item>
+        <div class="tip">
+          <router-link to="/registry">还没有账户? 点这里注册</router-link>
+        </div>
+      </div>
+    </el-form>
+  </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+import { responseHandler } from '../utils';
+
 export default {
   name: 'login',
   data() {
@@ -25,9 +38,54 @@ export default {
     };
   },
   methods: {
-    onSubmit() {
-      console.log('submit!');
+    ...mapActions(['login']),
+    async onSubmit() {
+      const { name, password } = this.form;
+      const res = await this.login({ name, password });
+      responseHandler(this, res, () => {
+        if (res.success) {
+          this.$router.push({ path: '/' });
+        }
+      });
     }
   }
 };
 </script>
+
+<style lang="less">
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background: #fff;
+  .login-form {
+    width: 320px;
+    padding: 24px 36px;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.08);
+    .form-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 16px;
+      img {
+        height: 48px;
+        margin-right: 24px;
+      }
+      .text {
+        font-size: 30px;
+      }
+    }
+    .form-body {
+      margin-top: 12px;
+      .login-btn {
+        width: 100%;
+      }
+      .tip {
+        display: flex;
+        font-size: 14px;
+      }
+    }
+  }
+}
+</style>
