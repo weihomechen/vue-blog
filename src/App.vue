@@ -16,6 +16,19 @@ body {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    .layout {
+      height: 100%;
+      background: #f6f6f6;
+      .el-header {
+        padding: 0;
+      }
+      .main-body {
+        width: 98%;
+        margin: 12px auto;
+        margin-bottom: -12px;
+        background: #fff;
+      }
+    }
   }
   a,
   a:link,

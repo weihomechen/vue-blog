@@ -21,5 +21,10 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "login" */ './views/Login.vue'),
     },
+    {
+      path: '/personCenter',
+      name: 'personCenter',
+      component: () => import(/* webpackChunkName: "personCenter" */ './views/PersonCenter.vue'),
+    },
   ],
 });

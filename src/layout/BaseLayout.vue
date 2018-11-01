@@ -1,5 +1,5 @@
 <template>
-  <el-container class="base-layout">
+  <el-container class="layout base-layout">
     <el-header>
       <Header/>
     </el-header>
@@ -28,20 +28,9 @@ export default {
 
 <style lang="less" scoped>
 .base-layout {
-  background: #f6f6f6;
-  .main-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 1000px;
-    margin: 12px;
-    margin-bottom: -12px;
-    background: #fff;
+  .el-header {
+    padding: 0;
   }
-}
-
-.el-header {
-  padding: 0;
 }
 </style>
 
