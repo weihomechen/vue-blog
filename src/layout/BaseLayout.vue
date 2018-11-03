@@ -27,10 +27,4 @@ export default {
 
 
 <style lang="less" scoped>
-.base-layout {
-  .el-header {
-    padding: 0;
-  }
-}
 </style>
-
