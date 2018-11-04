@@ -1,7 +1,9 @@
 <template>
-  <div class="header">
+  <el-header class="header">
     <div class="left-container">
-      <img alt="Vue logo" src="../../assets/logo.png">
+      <div v-if="hasLogo">
+        <img alt="Vue logo" src="../../assets/logo.png">
+      </div>
     </div>
     <el-menu
       :default-active="activeRoute"
@@ -17,7 +19,7 @@
         <el-menu-item index @click="submitLogout">退出</el-menu-item>
       </el-submenu>
     </el-menu>
-  </div>
+  </el-header>
 </template>
 
 <script>
@@ -26,6 +28,12 @@ import { errorHandler, responseHandler } from '../../utils/index';
 
 export default {
   name: 'layout-header',
+  props: {
+    hasLogo: {
+      type: Boolean,
+      default: true
+    }
+  },
   data() {
     return {
       activeRoute: '/'

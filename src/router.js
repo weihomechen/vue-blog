@@ -24,7 +24,19 @@ export default new Router({
     {
       path: '/personCenter',
       name: 'personCenter',
-      component: () => import(/* webpackChunkName: "personCenter" */ './views/PersonCenter.vue'),
+      component: () => import(/* webpackChunkName: "personCenter" */ './layout/SiderLayout.vue'),
+      children: [
+        {
+          path: 'profile',
+          name: 'profile',
+          component: () => import(/* webpackChunkName: "profile" */ './views/Profile.vue'),
+        },
+        {
+          path: 'password',
+          name: 'password',
+          component: () => import(/* webpackChunkName: "password" */ './views/password.vue'),
+        },
+      ],
     },
   ],
 });

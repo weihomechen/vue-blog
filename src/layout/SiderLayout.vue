@@ -1,19 +1,12 @@
 <template>
   <el-container class="layout sider-layout">
-    <el-aside class="sider">
-      <Sider/>
-    </el-aside>
+    <Sider/>
     <el-container>
-      <el-header>
-        <Header/>
-      </el-header>
+      <Header :hasLogo="false"/>
       <el-main class="main-body">
-        <slot></slot>
+        <router-view></router-view>
       </el-main>
-      <el-footer>
-        <Footer/>
-      </el-footer>
-      <el-container></el-container>
+      <Footer/>
     </el-container>
   </el-container>
 </template>
@@ -36,8 +29,8 @@ export default {
 
 <style lang="less" scoped>
 .sider-layout {
-  .sider {
-    width: 240px !important;
+  .el-container {
+    flex-direction: column;
   }
 }
 </style>

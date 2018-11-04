@@ -1,13 +1,12 @@
 <template>
-  <div class="footer">Rulifun Blog 版权所有 © 2018 由 weihome 支持</div>
+  <el-footer class="footer">Rulifun Blog 版权所有 © 2018 由 weihome 支持</el-footer>
 </template>
 
 <style lang="less">
 .footer {
   position: fixed;
+  width: 100%;
   bottom: 0;
-  left: 0;
-  right: 0;
   display: flex;
   justify-content: center;
   align-items: center;

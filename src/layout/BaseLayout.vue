@@ -1,14 +1,10 @@
 <template>
   <el-container class="layout base-layout">
-    <el-header>
-      <Header/>
-    </el-header>
+    <Header/>
     <el-main class="main-body">
       <slot></slot>
     </el-main>
-    <el-footer>
-      <Footer/>
-    </el-footer>
+    <Footer/>
   </el-container>
 </template>
 
@@ -27,4 +23,7 @@ export default {
 
 
 <style lang="less" scoped>
+.el-container {
+  flex-direction: column;
+}
 </style>
