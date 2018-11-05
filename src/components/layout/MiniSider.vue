@@ -1,8 +1,7 @@
 <template>
-  <el-aside class="sider">
+  <el-aside class="mini-sider">
     <div class="sider-header" :style="{background,color:textColor}">
       <img src="../../assets/logo.png" class="logo">
-      <div>VUE BLOG</div>
     </div>
     <el-menu
       :default-active="activeMenu"
@@ -12,10 +11,10 @@
       router
     >
       <el-menu-item index="/personCenter/profile">
-        <icon-font type="database" class="menu-icon" color="textColor"/>个人资料
+        <icon-font type="database" class="menu-icon" color="textColor"/>
       </el-menu-item>
       <el-menu-item index="/personCenter/password">
-        <icon-font type="reset-password" class="menu-icon" color="textColor"/>密码管理
+        <icon-font type="reset-password" class="menu-icon" color="textColor"/>
       </el-menu-item>
     </el-menu>
   </el-aside>
@@ -23,7 +22,7 @@
 
 <script>
 export default {
-  name: 'sider',
+  name: 'mini-sider',
   props: {
     background: {
       type: String,
@@ -52,19 +51,18 @@ export default {
 
 
 <style lang="less">
-.sider {
-  width: 220px !important;
+.mini-sider {
+  width: 60px !important;
   .sider-header {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 60px;
     padding: 0 16px;
-    font-size: 22px;
+    font-size: 24px;
     .logo {
-      width: 36px;
-      height: 36px;
-      margin-right: 16px;
+      width: 32px;
+      height: 32px;
       object-fit: cover;
     }
   }

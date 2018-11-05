@@ -2,27 +2,30 @@
   <el-header class="header">
     <div class="left-container">
       <img v-if="hasLogo" alt="Vue logo" src="../../assets/logo.png">
-      <!-- <icon-font v-if="!hasLogo" type="home" fontSize="22px" color="#00adb5"/> -->
+      <div @click="iconTypeChange">
+        <icon-font v-if="!hasLogo" :type="iconType" fontSize="22px" color="#00adb5"/>
+      </div>
     </div>
     <el-menu
       :default-active="activeRoute"
       mode="horizontal"
       class="right-container"
       @select="onSelect"
+      :text-color="textColor"
       router
     >
       <el-menu-item index="/">首页</el-menu-item>
-      <img :src="user && user.avatar" alt="" class="avatar">
       <el-submenu index="3">
         <template slot="title">{{user.name}}</template>
         <el-menu-item index @click="submitLogout">退出</el-menu-item>
       </el-submenu>
+      <img :src="user && user.avatar" alt="" class="avatar">
     </el-menu>
   </el-header>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapMutations, mapActions } from 'vuex';
 import { errorHandler, responseHandler } from '../../utils/index';
 
 export default {
@@ -31,11 +34,16 @@ export default {
     hasLogo: {
       type: Boolean,
       default: true
+    },
+    textColor: {
+      type: String,
+      default: '#333'
     }
   },
   data() {
     return {
-      activeRoute: '/'
+      activeRoute: '/',
+      iconType: 'menu-unfold'
     };
   },
   mounted() {
@@ -51,9 +59,18 @@ export default {
     ...mapGetters(['user'])
   },
   methods: {
+    ...mapMutations(['MENU_FOLD_CHANGE']),
     ...mapActions(['getCurrentUser', 'logout']),
     onSelect(key) {
       this.activeRoute = key;
+    },
+    iconTypeChange() {
+      if (this.iconType === 'menu-fold') {
+        this.iconType = 'menu-unfold';
+      } else {
+        this.iconType = 'menu-fold';
+      }
+      this.MENU_FOLD_CHANGE(this.iconType);
     },
     async submitLogout() {
       const res = await this.logout();
@@ -85,7 +102,6 @@ export default {
     .avatar {
       width: 40px;
       height: 40px;
-      margin-left: 16px;
       object-fit: cover;
       border-radius: 50%;
     }

@@ -2,18 +2,17 @@
 
 const app = {
   state: {
+    isSiderFold: false,
   },
 
   mutations: {
-    STATE_CHANGE: (state, val = {}) => {
-      state = {
-        ...state,
-        ...val
-      };
+    MENU_FOLD_CHANGE: (state, type) => {
+      state.isSiderFold = type === 'menu-fold';
     }
   },
 
   actions: {
+
   }
 };
 
