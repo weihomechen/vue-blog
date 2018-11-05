@@ -11,8 +11,12 @@
       :active-text-color="activeTextColor"
       router
     >
-      <el-menu-item index="/personCenter/profile">个人资料</el-menu-item>
-      <el-menu-item index="/personCenter/password">密码管理</el-menu-item>
+      <el-menu-item index="/personCenter/profile">
+        <icon-font type="database" class="menu-icon" color="textColor"/>个人资料
+      </el-menu-item>
+      <el-menu-item index="/personCenter/password">
+        <icon-font type="reset-password" class="menu-icon" color="textColor"/>密码管理
+      </el-menu-item>
     </el-menu>
   </el-aside>
 </template>
@@ -31,7 +35,7 @@ export default {
     },
     activeTextColor: {
       type: String,
-      default: '#ffd04b'
+      default: '#00adb5'
     }
   },
   data() {
@@ -67,6 +71,9 @@ export default {
   .el-menu {
     height: 100%;
     border: none;
+    .menu-icon {
+      margin-right: 12px;
+    }
   }
 }
 </style>

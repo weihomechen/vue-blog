@@ -21,9 +21,6 @@ body {
     .layout {
       height: 100%;
       background: #f6f6f6;
-      .el-header {
-        padding: 0;
-      }
       .main-body {
         width: 98%;
         margin: 12px auto;

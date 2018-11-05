@@ -1,9 +1,8 @@
 <template>
   <el-header class="header">
     <div class="left-container">
-      <div v-if="hasLogo">
-        <img alt="Vue logo" src="../../assets/logo.png">
-      </div>
+      <img v-if="hasLogo" alt="Vue logo" src="../../assets/logo.png">
+      <!-- <icon-font v-if="!hasLogo" type="home" fontSize="22px" color="#00adb5"/> -->
     </div>
     <el-menu
       :default-active="activeRoute"
@@ -70,9 +69,11 @@ export default {
 .header {
   display: flex;
   justify-content: space-between;
-  padding: 0 24px;
+  padding: 0 16px;
   background: #fff;
   .left-container {
+    display: flex;
+    align-items: center;
     img {
       width: 48px;
       height: 48px;

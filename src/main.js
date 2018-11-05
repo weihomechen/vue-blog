@@ -4,9 +4,12 @@ import 'element-ui/lib/theme-chalk/index.css';
 import App from './App.vue';
 import router from './router';
 import store from './store/index';
+import IconFont from './components/icon-font';
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
+Vue.component('icon-font', IconFont);
+
 
 new Vue({
   router,
