@@ -1,22 +1,22 @@
 <template>
   <div class="login">
-    <el-form class="login-form" ref="form" :model="form">
+    <el-form class="login-form" ref="form" :model="form" :rules="rules">
       <div class="form-header">
         <img src="../assets/logo.png" alt="">
         <div class="text">IFUN BLOG</div>
       </div>
       <div class="form-body">
-        <el-form-item>
-          <el-input v-model="form.name" placeholder="用户名（试用：guest）"></el-input>
+        <el-form-item prop="name">
+          <el-input v-model="form.name" placeholder="用户名或邮箱（试用：guest）"></el-input>
         </el-form-item>
-        <el-form-item>
+        <el-form-item prop="password">
           <el-input v-model="form.password" placeholder="密码（试用：guest）" type="password"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="onSubmit" class="login-btn">登陆</el-button>
         </el-form-item>
         <div class="tip">
-          <router-link to="/registry">还没有账户? 点这里注册</router-link>
+          <router-link to="/register">还没有账户? 点这里注册</router-link>
         </div>
       </div>
     </el-form>
@@ -34,6 +34,10 @@ export default {
       form: {
         name: '',
         password: ''
+      },
+      rules: {
+        name: [{ required: true, message: '请输入用户名或邮箱' }],
+        password: [{ required: true, message: '请输入密码' }]
       }
     };
   },

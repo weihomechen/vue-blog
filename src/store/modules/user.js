@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign, no-return-assign */
-import { login, getUserInfo, logout } from '@/services/user';
+import { login, register, getUserInfo, logout } from '@/services/user';
 
 const user = {
   state: {
@@ -27,6 +27,12 @@ const user = {
         const { user } = data;
         commit('STATE_CHANGE', { user });
       }
+      return res;
+    },
+
+    // 用户注册
+    async register(_, userInfo) {
+      const res = await register(userInfo);
       return res;
     },
 

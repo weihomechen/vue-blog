@@ -28,6 +28,11 @@ export default new Router({
       component: () => import(/* webpackChunkName: "login" */ './views/Login.vue'),
     },
     {
+      path: '/register',
+      name: 'register',
+      component: () => import(/* webpackChunkName: "register" */ './views/Register.vue'),
+    },
+    {
       path: '/personCenter',
       name: 'personCenter',
       component: () => import(/* webpackChunkName: "personCenter" */ './layout/SiderLayout.vue'),
