@@ -1,18 +1,13 @@
 <template>
-  <BaseLayout class="home">
+  <div class="home">
     <div class="item">233</div>
     <div>233</div>
-  </BaseLayout>
+  </div>
 </template>
 
 <script>
-import BaseLayout from '../layout/BaseLayout.vue';
-
 export default {
-  name: 'home',
-  components: {
-    BaseLayout
-  }
+  name: 'home'
 };
 </script>
 

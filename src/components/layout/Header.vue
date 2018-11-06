@@ -2,8 +2,8 @@
   <el-header class="header">
     <div class="left-container">
       <img v-if="hasLogo" alt="Vue logo" src="../../assets/logo.png">
-      <div @click="iconTypeChange">
-        <icon-font v-if="!hasLogo" :type="iconType" fontSize="22px" color="#00adb5"/>
+      <div v-else @click="iconTypeChange">
+        <icon-font :type="iconType" fontSize="22px" color="#00adb5"/>
       </div>
     </div>
     <el-menu
@@ -17,6 +17,7 @@
       <el-menu-item index="/">首页</el-menu-item>
       <el-submenu index="3">
         <template slot="title">{{user.name}}</template>
+        <el-menu-item index="/personCenter/profile">个人中心</el-menu-item>
         <el-menu-item index @click="submitLogout">退出</el-menu-item>
       </el-submenu>
       <img :src="user && user.avatar" alt="" class="avatar">

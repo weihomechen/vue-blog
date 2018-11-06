@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './views/Home.vue';
 
 Vue.use(Router);
 
@@ -10,8 +9,15 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home,
+      name: 'baseLayout',
+      component: () => import(/* webpackChunkName: "baseLayout" */ './layout/BaseLayout.vue'),
+      children: [
+        {
+          path: '/',
+          name: 'home',
+          component: () => import(/* webpackChunkName: "home" */ './views/Home.vue'),
+        },
+      ],
     },
     {
       path: '/login',
@@ -34,7 +40,7 @@ export default new Router({
         {
           path: 'password',
           name: 'password',
-          component: () => import(/* webpackChunkName: "password" */ './views/password.vue'),
+          component: () => import(/* webpackChunkName: "password" */ './views/Password.vue'),
         },
       ],
     },

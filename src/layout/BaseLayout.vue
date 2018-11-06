@@ -2,7 +2,7 @@
   <el-container class="layout base-layout">
     <Header/>
     <el-main class="main-body">
-      <slot></slot>
+      <router-view></router-view>
     </el-main>
     <Footer/>
   </el-container>
