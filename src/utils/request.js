@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import axios from 'axios';
+import { errorHandler } from "./index";
 
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
@@ -50,7 +51,14 @@ export default function request(options) {
     options.url += `?t=${t}`;
   }
 
-  return fetch(options).then(response => response.data).catch((error) => {
+  return fetch(options).then((response) => {
+    const { data } = response;
+    if (data.success) {
+      return data;
+    }
+    errorHandler(data);
+    return Promise.reject(data);
+  }).catch((error) => {
     console.log(error);
     return Promise.reject(error);
   });

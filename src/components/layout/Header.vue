@@ -26,11 +26,11 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapActions } from 'vuex';
-import { errorHandler, responseHandler } from '../../utils/index';
+import { mapGetters, mapMutations, mapActions } from "vuex";
+import { errorHandler, responseHandler } from "../../utils/index";
 
 export default {
-  name: 'layout-header',
+  name: "layout-header",
   props: {
     hasLogo: {
       type: Boolean,
@@ -38,45 +38,45 @@ export default {
     },
     textColor: {
       type: String,
-      default: '#333'
+      default: "#333"
     }
   },
   data() {
     return {
-      activeRoute: '/',
-      iconType: 'menu-unfold'
+      activeRoute: "/",
+      iconType: "menu-unfold"
     };
   },
   mounted() {
     this.getCurrentUser()
       .then(({ data }) => {
         if (!data) {
-          this.$router.push({ path: '/login' });
+          this.$router.push({ path: "/login" });
         }
       })
-      .catch(e => errorHandler(this, e));
+      .catch(errorHandler);
   },
   computed: {
-    ...mapGetters(['user'])
+    ...mapGetters(["user"])
   },
   methods: {
-    ...mapMutations(['MENU_FOLD_CHANGE']),
-    ...mapActions(['getCurrentUser', 'logout']),
+    ...mapMutations(["MENU_FOLD_CHANGE"]),
+    ...mapActions(["getCurrentUser", "logout"]),
     onSelect(key) {
       this.activeRoute = key;
     },
     iconTypeChange() {
-      if (this.iconType === 'menu-fold') {
-        this.iconType = 'menu-unfold';
+      if (this.iconType === "menu-fold") {
+        this.iconType = "menu-unfold";
       } else {
-        this.iconType = 'menu-fold';
+        this.iconType = "menu-fold";
       }
       this.MENU_FOLD_CHANGE(this.iconType);
     },
     async submitLogout() {
       const res = await this.logout();
-      responseHandler(this, res);
-      this.$router.push({ path: '/login' });
+      responseHandler(res);
+      this.$router.push({ path: "/login" });
     }
   }
 };

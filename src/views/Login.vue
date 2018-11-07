@@ -24,31 +24,31 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-import { responseHandler } from '../utils';
+import { mapActions } from "vuex";
+import { responseHandler } from "../utils";
 
 export default {
-  name: 'login',
+  name: "login",
   data() {
     return {
       form: {
-        name: '',
-        password: ''
+        name: "",
+        password: ""
       },
       rules: {
-        name: [{ required: true, message: '请输入用户名或邮箱' }],
-        password: [{ required: true, message: '请输入密码' }]
+        name: [{ required: true, message: "请输入用户名或邮箱" }],
+        password: [{ required: true, message: "请输入密码" }]
       }
     };
   },
   methods: {
-    ...mapActions(['login']),
+    ...mapActions(["login"]),
     async onSubmit() {
       const { name, password } = this.form;
       const res = await this.login({ name, password });
-      responseHandler(this, res, () => {
+      responseHandler(res, () => {
         if (res.success) {
-          this.$router.push({ path: '/' });
+          this.$router.push({ path: "/" });
         }
       });
     }

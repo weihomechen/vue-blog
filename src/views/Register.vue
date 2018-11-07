@@ -30,47 +30,47 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-import { responseHandler } from '../utils';
+import { mapActions } from "vuex";
+import { responseHandler } from "../utils";
 
 export default {
-  name: 'register',
+  name: "register",
   data() {
     const checkPassword = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('请再次输入密码'));
+      if (value === "") {
+        callback(new Error("请再次输入密码"));
       } else if (value !== this.form.password) {
-        callback(new Error('两次输入密码不一致!'));
+        callback(new Error("两次输入密码不一致!"));
       } else {
         callback();
       }
     };
     return {
       form: {
-        name: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: ""
       },
       rules: {
         name: [
-          { required: true, message: '请输入名称' },
-          { min: 4, max: 16, message: '长度在 4 到 16 个字符' }
+          { required: true, message: "请输入名称" },
+          { min: 4, max: 16, message: "长度在 4 到 16 个字符" }
         ],
-        email: [{ type: 'email', required: true, message: '请输入正确邮箱' }],
-        password: [{ required: true, message: '请输入密码' }],
-        confirmPassword: [{ validator: checkPassword, trigger: 'blur' }]
+        email: [{ type: "email", required: true, message: "请输入正确邮箱" }],
+        password: [{ required: true, message: "请输入密码" }],
+        confirmPassword: [{ validator: checkPassword, trigger: "blur" }]
       }
     };
   },
   methods: {
-    ...mapActions(['register']),
+    ...mapActions(["register"]),
     async onSubmit() {
       const { name, email, password } = this.form;
       const res = await this.register({ name, email, password });
-      responseHandler(this, { ...res, msg: '注册成功，请重新登录' }, () => {
+      responseHandler({ ...res, msg: "注册成功，请重新登录" }, () => {
         if (res.success) {
-          this.$router.push({ path: '/login' });
+          this.$router.push({ path: "/login" });
         }
       });
     }

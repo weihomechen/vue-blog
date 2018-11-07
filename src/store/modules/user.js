@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign, no-return-assign */
-import { login, register, getUserInfo, logout } from '@/services/user';
+import { login, register, getUserInfo, logout, update } from '@/services/user';
 
 const user = {
   state: {
@@ -48,6 +48,15 @@ const user = {
 
     async logout({ commit }, params) {
       const res = await logout(params);
+      const { success } = res;
+      if (success) {
+        commit('STATE_CHANGE', { user: {} });
+      }
+      return res;
+    },
+
+    async updateUser({ commit }, params) {
+      const res = await update(params);
       const { success } = res;
       if (success) {
         commit('STATE_CHANGE', { user: {} });
