@@ -47,6 +47,11 @@ export default new Router({
           name: 'password',
           component: () => import(/* webpackChunkName: "password" */ './views/Password.vue'),
         },
+        {
+          path: 'changeLog',
+          name: 'changeLog',
+          component: () => import(/* webpackChunkName: "changeLog" */ './views/ChangeLog.vue'),
+        },
       ],
     },
   ],

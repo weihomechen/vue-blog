@@ -16,6 +16,9 @@
       <el-menu-item index="/personCenter/password">
         <icon-font type="reset-password" class="menu-icon" color="textColor"/>
       </el-menu-item>
+      <el-menu-item index="/personCenter/changeLog">
+        <icon-font type="calendar1" class="menu-icon" color="textColor"/>
+      </el-menu-item>
     </el-menu>
   </el-aside>
 </template>

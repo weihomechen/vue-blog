@@ -15,7 +15,7 @@
       router
     >
       <el-menu-item index="/">首页</el-menu-item>
-      <el-submenu index="3">
+      <el-submenu index="/personCenter/profile">
         <template slot="title">{{user.name}}</template>
         <el-menu-item index="/personCenter/profile">个人中心</el-menu-item>
         <el-menu-item index @click="submitLogout">退出</el-menu-item>
@@ -26,11 +26,11 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapActions } from "vuex";
-import { errorHandler, responseHandler } from "../../utils/index";
+import { mapGetters, mapMutations, mapActions } from 'vuex';
+import { errorHandler, responseHandler } from '../../utils/index';
 
 export default {
-  name: "layout-header",
+  name: 'layout-header',
   props: {
     hasLogo: {
       type: Boolean,
@@ -38,45 +38,45 @@ export default {
     },
     textColor: {
       type: String,
-      default: "#333"
+      default: '#333'
     }
   },
   data() {
     return {
-      activeRoute: "/",
-      iconType: "menu-unfold"
+      activeRoute: '/',
+      iconType: 'menu-unfold'
     };
   },
   mounted() {
     this.getCurrentUser()
       .then(({ data }) => {
         if (!data) {
-          this.$router.push({ path: "/login" });
+          this.$router.push({ path: '/login' });
         }
       })
       .catch(errorHandler);
   },
   computed: {
-    ...mapGetters(["user"])
+    ...mapGetters(['user'])
   },
   methods: {
-    ...mapMutations(["MENU_FOLD_CHANGE"]),
-    ...mapActions(["getCurrentUser", "logout"]),
+    ...mapMutations(['MENU_FOLD_CHANGE']),
+    ...mapActions(['getCurrentUser', 'logout']),
     onSelect(key) {
       this.activeRoute = key;
     },
     iconTypeChange() {
-      if (this.iconType === "menu-fold") {
-        this.iconType = "menu-unfold";
+      if (this.iconType === 'menu-fold') {
+        this.iconType = 'menu-unfold';
       } else {
-        this.iconType = "menu-fold";
+        this.iconType = 'menu-fold';
       }
       this.MENU_FOLD_CHANGE(this.iconType);
     },
     async submitLogout() {
       const res = await this.logout();
       responseHandler(res);
-      this.$router.push({ path: "/login" });
+      this.$router.push({ path: '/login' });
     }
   }
 };

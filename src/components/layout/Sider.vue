@@ -17,6 +17,9 @@
       <el-menu-item index="/personCenter/password">
         <icon-font type="reset-password" class="menu-icon" color="textColor"/>密码管理
       </el-menu-item>
+      <el-menu-item index="/personCenter/changeLog">
+        <icon-font type="calendar1" class="menu-icon" color="textColor"/>更新日志
+      </el-menu-item>
     </el-menu>
   </el-aside>
 </template>
