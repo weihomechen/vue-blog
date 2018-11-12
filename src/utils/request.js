@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import axios from 'axios';
-import { errorHandler } from "./index";
+import { errorHandler } from './index';
 
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 

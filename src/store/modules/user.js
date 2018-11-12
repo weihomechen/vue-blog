@@ -1,10 +1,19 @@
 /* eslint-disable no-param-reassign, no-return-assign */
-import { login, register, getUserInfo, logout, update } from '@/services/user';
+import {
+  login,
+  register,
+  getUserInfo,
+  logout,
+  update,
+  getUsers,
+  getActiveUsers,
+} from '../../services/user';
 
 const user = {
   state: {
     user: {},
     userList: [],
+    activeUsers: [],
   },
 
   mutations: {
@@ -42,6 +51,26 @@ const user = {
       const { success, data: user } = res;
       if (success) {
         commit('STATE_CHANGE', { user });
+      }
+      return res;
+    },
+
+    // 获取用户列表
+    async getUsers({ commit }, params) {
+      const res = await getUsers(params);
+      const { success, data: userList } = res;
+      if (success) {
+        commit('STATE_CHANGE', { userList });
+      }
+      return res;
+    },
+
+    // 获取活跃用户列表
+    async getActiveUsers({ commit }, params) {
+      const res = await getActiveUsers(params);
+      const { success, data: activeUsers } = res;
+      if (success) {
+        commit('STATE_CHANGE', { activeUsers });
       }
       return res;
     },
