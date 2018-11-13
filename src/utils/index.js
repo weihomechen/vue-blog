@@ -1,5 +1,6 @@
 import { Message } from 'element-ui';
 
+export const LOGO_PATH = 'https://rulifun.oss-cn-hangzhou.aliyuncs.com/vue-blog/logo-v.png';
 const DEFAULT_SUCCESS_MSG = '操作成功';
 const DEFAULT_ERROR_MSG = '服务器开小差了，请稍后再试';
 

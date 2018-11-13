@@ -5,6 +5,7 @@ const getters = {
   activeUsers: state => state.user.activeUsers,
   articles: state => state.article.list,
   articlesTotal: state => state.article.totalCount,
+  cateList: state => state.cate.list,
 };
 
 export default getters;

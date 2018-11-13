@@ -1,7 +1,7 @@
 <template>
   <el-header class="header">
     <div class="left-container">
-      <img v-if="hasLogo" alt="Vue logo" src="../../assets/logo.png">
+      <img v-if="hasLogo" alt="" :src="LOGO_PATH">
       <div v-else @click="iconTypeChange">
         <icon-font :type="iconType" fontSize="22px" color="#00adb5"/>
       </div>
@@ -27,7 +27,7 @@
 
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex';
-import { errorHandler, responseHandler } from '../../utils/index';
+import { LOGO_PATH, errorHandler, responseHandler } from '../../utils';
 
 export default {
   name: 'layout-header',
@@ -44,7 +44,8 @@ export default {
   data() {
     return {
       activeRoute: '/',
-      iconType: 'menu-unfold'
+      iconType: 'menu-unfold',
+      LOGO_PATH
     };
   },
   mounted() {

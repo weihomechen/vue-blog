@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import app from './modules/app';
 import user from './modules/user';
 import article from './modules/article';
+import cate from './modules/cate';
 import getters from './getters';
 
 Vue.use(Vuex);
@@ -12,6 +13,7 @@ const store = new Vuex.Store({
     app,
     user,
     article,
+    cate,
   },
   getters
 });

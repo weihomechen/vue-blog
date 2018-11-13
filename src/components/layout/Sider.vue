@@ -1,7 +1,7 @@
 <template>
   <el-aside class="sider">
     <div class="sider-header" :style="{background,color:textColor}">
-      <img src="../../assets/logo.png" class="logo">
+      <img :src="LOGO_PATH" class="logo">
       <div>VUE BLOG</div>
     </div>
     <el-menu
@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import { LOGO_PATH } from '../../utils';
+
 export default {
   name: 'sider',
   props: {
@@ -42,7 +44,9 @@ export default {
     }
   },
   data() {
-    return {};
+    return {
+      LOGO_PATH
+    };
   },
   computed: {
     activeMenu() {

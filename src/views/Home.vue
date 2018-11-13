@@ -4,15 +4,20 @@
       <div class="article-list-header">最新文章</div>
       <div class="article-list-body">
         <div
-          v-for="{id,uid, title, author, tags = '',cate,comments} in articles"
+          v-for="{ id, uid, title, author, avatar, updateTime, tags = '', cate, comments } in articles"
           :key="id"
-          class="article"
+          class="article-item"
         >
-          <img v-if="getUserInfo(uid,'avatar')">
+          <img
+            v-if="getUserInfo(uid, 'avatar')"
+            :src="getUserInfo(uid, 'avatar')"
+            class="author-avatar"
+            alt=""
+          >
           <div v-else class="author-name">{{author}}</div>
           <div class="info">
             <div class="title">
-              <router-link to="{`/article/detail/${id}`}">{{title}}</router-link>
+              <router-link :to="id | articlePathFilter">{{title}}</router-link>
               <el-tag
                 v-if="getCateInfo(cate)"
                 :color="cate.color"
@@ -22,17 +27,17 @@
             <div>
               <span class="info-item">
                 <icon-font type="time" color="#F38181"/>
-                {{moment(item.updateTime).format('YYYY-MM-DD HH:mm')}}
+                {{updateTime | acticleTimeRender}}
               </span>
               <span v-if="comments" class="info-item">
                 <icon-font type="comment" color="#F38181"/>
-                {{item.comments}}
+                {{comments}}
               </span>
             </div>
-            <div class="tags">
+            <div v-if="tags" class="tags">
               <icon-font type="tag" color="#F38181" fontSize="20px"/>
               <span
-                v-for="tag in tags"
+                v-for="tag in (tags || '').split(',')"
                 :key="tag.id"
                 class="tag"
                 :click="() => searchArticleByTag(tag)"
@@ -61,7 +66,15 @@ export default {
     this.getActiveUsers();
   },
   computed: {
-    ...mapGetters(['articles', 'userList', 'activeUsers'])
+    ...mapGetters(['articles', 'userList', 'activeUsers', 'cateList'])
+  },
+  filters: {
+    articlePathFilter(id) {
+      return `/article/detail/${id}`;
+    },
+    acticleTimeRender(time) {
+      return moment(time).format('YYYY-MM-DD HH:mm');
+    }
   },
   methods: {
     ...mapActions(['getArticles', 'getUsers', 'getActiveUsers']),
@@ -70,16 +83,17 @@ export default {
       return targetUser[field] || '';
     },
     getCateInfo(cateId) {
-      const { cateList = [] } = this.props;
-      return cateList.find(item => item.id === cateId);
-    }
+      return this.cateList.find(item => item.id === cateId);
+    },
+    searchArticleByCate(cateId) {},
+    searchArticleByTag(tag) {}
   }
 };
 </script>
 
 <style lang="less">
 .home {
-  .article-list {
+  .articles {
     width: 70%;
     .article-list-header {
       padding-left: 12px;
