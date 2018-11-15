@@ -47,6 +47,27 @@
         </div>
       </div>
     </div>
+    <div class="user-list">
+      <div class="user-list-header">活跃用户</div>
+      <div class="user-list-body">
+        <el-table :data="activeUsers" style="width: 100%">
+          <el-table-column label="排名" align="center">
+            <template slot-scope="scope">
+              <icon-font
+                v-if="getRank(scope.row.uid) < 4"
+                :type="getTopIcon(scope.row.uid,'type')"
+                :color="getTopIcon(scope.row.uid,'color')"
+              />
+              <span v-else>{{ this.getRank(scope.row.uid) }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column prop="uid" label="姓名" align="center">
+            <template slot-scope="scope">{{getUserInfo(scope.row.uid,'name')}}</template>
+          </el-table-column>
+          <el-table-column prop="sum" label="文章数" align="center"></el-table-column>
+        </el-table>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -54,6 +75,22 @@
 import moment from 'moment';
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 import { errorHandler } from '../utils';
+
+const topIconMap = [
+  {},
+  {
+    type: 'first',
+    color: '#ff6464'
+  },
+  {
+    type: 'second',
+    color: '#0092ca'
+  },
+  {
+    type: 'third',
+    color: '#ffaa64'
+  }
+];
 
 export default {
   name: 'home',
@@ -86,13 +123,22 @@ export default {
       return this.cateList.find(item => item.id === cateId);
     },
     searchArticleByCate(cateId) {},
-    searchArticleByTag(tag) {}
+    searchArticleByTag(tag) {},
+    getRank(uid) {
+      let index = this.activeUsers.findIndex(v => v.uid === uid);
+      return ++index;
+    },
+    getTopIcon(uid, key) {
+      const index = this.getRank(uid);
+      return topIconMap[index][key];
+    }
   }
 };
 </script>
 
 <style lang="less">
 .home {
+  display: flex;
   .articles {
     width: 70%;
     .article-list-header {
