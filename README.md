@@ -30,9 +30,9 @@ npm i @ifun/deploy -g
 [deploy-tool说明](https://github.com/weihomechen/deploy-tool/blob/master/README.md)
 
 ```sh
-# 部署node项目
+# 部署项目
 deploy -n <name>
 
 # 示例
-deploy -n blog-node
+deploy -n vue-blog
 ```
