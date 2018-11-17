@@ -14,6 +14,7 @@ module.exports = {
     'import/extensions': 'off',
     'no-shadow': 'off',
     'object-curly-newline': 'off',
+    'no-restricted-globals': 'off'
   },
   parserOptions: {
     parser: 'babel-eslint',

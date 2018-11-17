@@ -1,4 +1,5 @@
 module.exports = {
+  baseUrl: '/vue-blog/',
   configureWebpack: {
     resolve: {
       extensions: ['.js', '.vue', '.json'],
